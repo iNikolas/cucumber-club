@@ -7,12 +7,12 @@ export default defineComponent({
   name: "App",
   setup() {
     return () => (
-      <div>
+      <>
         <AppHeader />
         <main class="main">
           <RouterView />
         </main>
-      </div>
+      </>
     );
   },
 });
