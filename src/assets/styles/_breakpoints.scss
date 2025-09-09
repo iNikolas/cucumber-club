@@ -1,0 +1,16 @@
+$mobile-breakpoint: xs-l;
+$desktop-lg-breakpoint: lg;
+$desktop-breakpoint: md;
+$desktop-header-breakpoint: xl;
+
+$breakpoints: (
+  "xs": 360px,
+  "xs-l": 480px,
+  "sm": 640px,
+  "md": 768px,
+  "lg": 1024px,
+  "lg-l": 1124px,
+  "xl": 1280px,
+  "xl-l": 1324px,
+  "2xl": 1536px,
+);
