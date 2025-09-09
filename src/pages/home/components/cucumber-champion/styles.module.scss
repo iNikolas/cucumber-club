@@ -1,0 +1,92 @@
+@use "~/variables" as *;
+@use "~/placeholders" as *;
+
+.champion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, #fff8dc, #ffe066, #ffd700);
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+  margin: 2rem 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  text-align: center;
+  animation: championPulse 3s infinite ease-in-out;
+
+  .champion-crown {
+    font-size: 2rem;
+    position: absolute;
+    top: -0.5rem;
+    left: 1rem;
+  }
+
+  .champion-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff8dc;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
+  }
+
+  .champion-info {
+    flex: 1;
+    min-width: 150px;
+  }
+
+  .champion-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #7a5a00;
+    margin: 0 0 0.3rem 0;
+  }
+
+  .champion-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #3d3d3d;
+    margin: 0.2rem 0;
+  }
+
+  .champion-score {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2f6d2f;
+    margin: 0.2rem 0;
+  }
+
+  .add-btn {
+    @extend %action-button;
+
+    border-radius: 8px;
+    padding: 0.6rem 1rem;
+    white-space: nowrap;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
+
+@keyframes championPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+  }
+}
+
+[data-theme="dark"] {
+  .champion {
+    background: linear-gradient(135deg, gold, #ffd700, #ffef9f);
+    .champion-title {
+      color: #5a4500;
+    }
+  }
+}

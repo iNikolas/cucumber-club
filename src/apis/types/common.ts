@@ -11,5 +11,6 @@ export interface PaginatedAPiResponse<T> {
     results: number;
     page: number;
     version: string;
+    hasMore: boolean;
   };
 }

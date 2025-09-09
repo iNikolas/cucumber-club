@@ -1,18 +1,19 @@
-import type {
-  PaginatedAPiResponse,
-  UserApiData,
-  UsersApiRequestParams,
-} from "./types";
-import { client } from "./config";
-import { buildQueryString } from "../utils/common";
-import { mapUsersApiResponseToUsers } from "./utils";
+import { getMockUsers, updateMockUserScoreAsynchronously } from "./mocks";
+import type { UsersApiRequestParams } from "./types";
+import { mapUserApiDataToUser } from "./utils";
 
-export async function getUsersList(params?: UsersApiRequestParams) {
-  const { data } = await client.get<PaginatedAPiResponse<UserApiData>>(
-    `https://randomuser.me/api/${buildQueryString({
-      ...params,
-      results: params?.results ?? 10,
-    })}`
-  );
-  return { results: mapUsersApiResponseToUsers(data.results), info: data.info };
+export async function getUsersLeaderboard(params?: UsersApiRequestParams) {
+  const data = await getMockUsers(params);
+
+  return {
+    results: data.results.map(mapUserApiDataToUser),
+    info: data.info,
+    top: data.top ? mapUserApiDataToUser(data.top) : null,
+  };
+}
+
+export async function updateUserScore(id: string, score = 1) {
+  const data = await updateMockUserScoreAsynchronously(id, score);
+
+  return mapUserApiDataToUser(data);
 }

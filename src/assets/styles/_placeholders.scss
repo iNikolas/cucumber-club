@@ -1,0 +1,10 @@
+%action-button {
+  background-color: var(--primary);
+  color: var(--primary-content);
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background-color: var(--info);
+  }
+}

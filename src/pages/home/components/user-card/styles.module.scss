@@ -1,19 +1,27 @@
+@use "~/mixins" as *;
 @use "~/variables" as *;
+@use "~/placeholders" as *;
 
 .user-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: rgba($neutral, 0.8);
+  background-color: rgba(var(--neutral), 0.8);
   border-radius: 12px;
   padding: 1rem 1.5rem;
   margin-bottom: 1rem;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
   transition: transform 0.2s, background-color 0.3s;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  @include mobile {
+    flex-wrap: nowrap;
+  }
 
   &:hover {
     transform: translateY(-3px);
-    background-color: rgba($neutral, 0.9);
+    background-color: rgba(var(--neutral), 0.9);
   }
 
   .user-avatar {
@@ -22,7 +30,7 @@
     border-radius: 50%;
     object-fit: cover;
     margin-right: 1rem;
-    border: 2px solid $primary;
+    border: 2px solid var(--primary);
   }
 
   .user-info {
@@ -32,12 +40,11 @@
     .user-name {
       font-size: 1.2rem;
       margin: 0 0 0.2rem 0;
-      color: $neutral-content;
     }
 
     .user-score {
       font-size: 1rem;
-      color: $primary;
+      color: var(--primary);
       margin: 0;
       font-weight: 600;
       transition: all 0.3s ease-in-out;
@@ -45,26 +52,16 @@
   }
 
   .add-btn {
-    background-color: $primary;
-    color: $primary-content;
-    font-weight: 600;
-    transition: background-color 0.2s;
-
-    &:hover {
-      background-color: $info;
-    }
+    @extend %action-button;
   }
 }
 
-@media (prefers-color-scheme: light) {
+[data-theme="dark"] {
   .user-card {
-    background-color: $base-200;
-    &:hover {
-      background-color: $base-300;
-    }
+    background-color: var(--base-200);
 
-    .user-score {
-      color: $base-content;
+    &:hover {
+      background-color: var(--base-300);
     }
   }
 }

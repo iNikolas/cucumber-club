@@ -1,12 +1,12 @@
 import { toValue, type MaybeRef } from "vue";
 import { useQuery, keepPreviousData } from "@tanstack/vue-query";
 
-import { getUsersList, type UsersApiRequestParams } from "@/apis";
+import { getUsersLeaderboard, type UsersApiRequestParams } from "@/apis";
 
 export function useUsersQuery(params?: MaybeRef<UsersApiRequestParams>) {
   return useQuery({
     queryKey: ["users", params],
-    queryFn: () => getUsersList(toValue(params)),
+    queryFn: () => getUsersLeaderboard(toValue(params)),
     staleTime: Infinity,
     placeholderData: keepPreviousData,
   });

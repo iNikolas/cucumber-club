@@ -11,6 +11,10 @@ export default defineComponent({
       type: Object as PropType<User>,
       required: true,
     },
+    isUpdating: {
+      type: Boolean,
+      required: true,
+    },
     onAddCucumber: {
       type: Function as PropType<(id: string) => void>,
       required: true,
@@ -21,21 +25,26 @@ export default defineComponent({
 
     watch(
       () => props.data.score,
-      (newScore, oldScore) => {
-        if (newScore > oldScore) {
-          let current = oldScore;
-          const step = () => {
-            if (current < newScore) {
-              current += 1;
-              displayScore.value = current;
+      (newScore, oldScore = 0) => {
+        if (newScore !== oldScore) {
+          const duration = 500;
+          const start = performance.now();
+
+          const step = (timestamp: number) => {
+            const progress = Math.min((timestamp - start) / duration, 1);
+            displayScore.value = Math.round(
+              oldScore + (newScore - oldScore) * progress
+            );
+
+            if (progress < 1) {
               requestAnimationFrame(step);
             }
           };
+
           requestAnimationFrame(step);
-        } else {
-          displayScore.value = newScore;
         }
-      }
+      },
+      { immediate: true }
     );
 
     const handleAddCucumber = () => {
@@ -53,7 +62,11 @@ export default defineComponent({
           <h3 class={styles["user-name"]}>{props.data.name}</h3>
           <p class={styles["user-score"]}>🥒 {displayScore.value}</p>
         </div>
-        <button class={styles["add-btn"]} onClick={handleAddCucumber}>
+        <button
+          disabled={props.isUpdating}
+          class={styles["add-btn"]}
+          onClick={handleAddCucumber}
+        >
           Add Cucumber
         </button>
       </div>

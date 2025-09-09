@@ -1,0 +1,83 @@
+@use "sass:color";
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  padding-top: 0.5rem;
+  border-bottom: 4px solid var(--primary);
+  background: linear-gradient(135deg, #a7f0b2, #89e5de, #a0b9f0);
+  color: var(--base-content);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: 800;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.icon {
+  font-size: 2.4rem;
+  animation: cucumberWiggle 2s infinite ease-in-out;
+}
+
+.title {
+  font-size: 2.2rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.tagline {
+  font-size: 1rem;
+  font-weight: 500;
+  opacity: 0.9;
+  margin: 0;
+  animation: fadeIn 2s ease-in-out forwards;
+}
+
+.dark-mode-toggle {
+  margin-left: auto;
+}
+
+@keyframes cucumberWiggle {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-15deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 0.9;
+    transform: translateY(0);
+  }
+}
+
+[data-theme="dark"] {
+  .header {
+    background: linear-gradient(135deg, #87e293, #37cdbe, #87a5e2);
+    color: #fff;
+  }
+}

@@ -1,25 +1,28 @@
+@use "sass:map";
+
+@use "./breakpoints" as *;
 @use "./variables" as *;
 
 @mixin desktop {
-  @media (min-width: map-get($breakpoints, $desktop-breakpoint)) {
+  @media (min-width: map.get($breakpoints, $desktop-breakpoint)) {
     @content;
   }
 }
 
 @mixin mobile {
-  @media (min-width: map-get($breakpoints, $mobile-breakpoint)) {
+  @media (min-width: map.get($breakpoints, $mobile-breakpoint)) {
     @content;
   }
 }
 
 @mixin breakpoint($breakpoint-key) {
-  @media (min-width: map-get($breakpoints, $breakpoint-key)) {
+  @media (min-width: map.get($breakpoints, $breakpoint-key)) {
     @content;
   }
 }
 
 @mixin less-breakpoint($breakpoint-key) {
-  @media (max-width: calc(map-get($breakpoints, $breakpoint-key) - 1px)) {
+  @media (max-width: calc(map.get($breakpoints, $breakpoint-key) - 1px)) {
     @content;
   }
 }

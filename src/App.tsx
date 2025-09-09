@@ -1,14 +1,18 @@
 import { defineComponent } from "vue";
+import { RouterView } from "vue-router";
 
-import HomePage from "@/pages/home";
+import AppHeader from "./components/layout/header";
 
 export default defineComponent({
   name: "App",
   setup() {
     return () => (
-      <main>
-        <HomePage />
-      </main>
+      <div>
+        <AppHeader />
+        <main class="main">
+          <RouterView />
+        </main>
+      </div>
     );
   },
 });

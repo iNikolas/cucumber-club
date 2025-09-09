@@ -1,6 +1,7 @@
 export interface UserApiData {
   gender: string;
   name: { title: string; first: string; last: string };
+  score: number;
   location: {
     street: { number: number; name: string };
     city: string;
